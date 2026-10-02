@@ -45,19 +45,20 @@ Each task must be completed using an iterative process involving LLM suggestions
 
 ### Task 1: Fix the inverted overlap placement bug
 
-Landing a block directly on top of the tower results in an immediate game over, whereas dropping a block completely off into thin air allows the tower to build upward. In game_engine.drop_block(), the placement check evaluates is_successful_drop = overlap <= 0. A positive overlap represents a successful collision, while an overlap of zero or less means the block completely missed the tower beneath it. Invert this condition so that overlap > 0 registers as a valid placement and overlap <= 0 triggers the tower collapse.
+Landing a block directly on top of the tower results in an immediate game over, whereas dropping a block into empty air allows the tower to continue building upward. Correct the drop condition so valid overlaps securely stack onto the tower while complete misses trigger the tower collapse.
 
 ### Task 2: Implement "Perfect Placement" bonus & width restoration
 
-Currently, any overlap trims the active block to the exact overlapping width. In game_engine.drop_block(), implement a precision reward: if the alignment error between the active block and the top stack block is within a tiny margin (e.g., abs(act.x - top_block.x) <= 3), snap the block directly into alignment without trimming its width, display a golden "PERFECT!" popup label, and reward extra bonus score points. If the player lands 3 perfect placements in a row, slightly expand the block width back outward.
+Currently, any placement slightly off-center permanently shaves down the block's width. Introduce a precision reward: if a dropped block aligns almost flush with the top of the tower, snap it into place without trimming, show a "PERFECT!" prompt with bonus score, and slightly restore lost width if multiple perfect drops are landed in a row
  
 ### Task 3: Implement falling off-cut debris animation
 
-When a block is trimmed, the overhang portion simply disappears from the scene instantly. Create an off-cut debris object representing the sliced-off excess rectangle that retains gravity velocity, rotating and falling off the screen to give satisfying visual weight to block trims.
+Sliced off-cut sections of blocks disappear instantly from the arena without visual feedback. Add animated debris that creates a falling, rotating remnant of the trimmed overhang whenever a block is cut, giving weight and impact to imperfect placements.
 
-### Task 4: Implement combo streak background color shifting
+### Task 4: Implement Atmospheric Background Shifting
 
-The background currently stays a flat dark grey throughout the entire climb. Enhance game_engine.render() so the sky background gradually transitions through atmospheric gradients (e.g., twilight blue, dusk purple, night starfield, stratosphere black) as the player stacks the skyscraper higher and higher into the sky.
+The sky remains a static color throughout the entire climb regardless of tower height. Transition the background through dynamic atmospheric color gradients as the skyscraper stacks higher
+
 ---
 
 ## Expected Behavior
