@@ -58,8 +58,6 @@ class GameEngine:
         right = min(act.x + act.width, top_block.x + top_block.width)
         overlap = right - left
         
-        # BUG SYMPTOM: 
-        # Overlap condition is inverted so hitting empty air succeeds while landing on the tower fails.
         is_successful_drop = overlap <= 0
         
         if is_successful_drop:
