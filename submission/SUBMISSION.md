@@ -4,7 +4,7 @@
 
 - [x] **Before video (10 s):** [before_bug.mp4](before_bug.mp4)
 - [x] **After video (10 s):** [after_fixed.mp4](after_fixed.mp4)
-- [ ] **LLM chat link:** _paste link here_
+- [x] **LLM chat (Claude Code, full history):** [claude_chat.md](claude_chat.md) ([view on GitHub](https://github.com/Artificialhuman74/54_skyscrapper_stack/blob/main/submission/claude_chat.md))
 
 An extra 17-second video, [after_full_demo.mp4](after_full_demo.mp4), climbs all the way to the edge of space.
 
