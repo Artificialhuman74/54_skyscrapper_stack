@@ -1,14 +1,14 @@
 import pygame
 
 class Block:
-    def __init__(self, x, y, width, height, color, speed=0):
+    def __init__(self, x, y, width, height, color, speed=0, direction=1):
         self.x = float(x)
         self.y = float(y)
         self.width = float(width)
         self.height = float(height)
         self.color = color
         self.speed = speed
-        self.direction = 1
+        self.direction = direction
 
     @property
     def rect(self):
@@ -26,7 +26,8 @@ class Block:
             self.x = screen_width - 20 - self.width
             self.direction = -1
 
-    def render(self, surface):
-        draw_rect = self.rect
+    def render(self, surface, camera_y=0):
+        # Blocks live in world space; the camera offset maps them onto the screen.
+        draw_rect = self.rect.move(0, int(camera_y))
         pygame.draw.rect(surface, self.color, draw_rect, border_radius=4)
         pygame.draw.rect(surface, (245, 245, 250), draw_rect, width=2, border_radius=4)

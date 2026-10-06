@@ -71,10 +71,11 @@ The sky remains a static color throughout the entire climb regardless of tower h
 ## Folder Structure
 
 ```
-word_scramble/
+54_skyscrapper_stack/
 ├── game/
-│   ├── game_engine.py
-│   └── text_box.py
+│   ├── block.py
+│   ├── effects.py
+│   └── game_engine.py
 ├── main.py
 └── README.md
 ```
